@@ -2,9 +2,9 @@
 A React app that will give u all information(maybe not all) for players, u may want to add to your nhl fantasy roster.
 
 ## Goals
-Learn React
-Re-Learn styling using Sass
-Make my dream come true to create something related to Hockey, especially NHL
+Learn React \
+Re-Learn styling using Sass \
+Make my dream come true to create something related to Hockey, especially NHL \
 
 ## Start Project 
 
