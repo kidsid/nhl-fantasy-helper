@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+# Select your NHL fantasy players with our help
+A React app that will give u all information(maybe not all) for players, u may want to add to your nhl fantasy roster.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Goals
+Learn React
+Re-Learn styling using Sass
+Make my dream come true to create something related to Hockey, especially NHL
 
-## Available Scripts
+## Start Project 
 
 In the project directory, you can run:
 
