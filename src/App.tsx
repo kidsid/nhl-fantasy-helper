@@ -1,12 +1,23 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import config from './config.json';
 import Header from './components/Header/Header';
+import Home from './pages/Home/Home';
+import Scores from './pages/Scores/Scores';
+import Teams from './pages/Teams/Teams';
 
 function App() {
   return (
     <div className="App">
       <Header items={config.Header.Items} />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/Scores" component={Scores} />
+          <Route path="/Teams" component={Teams} />
+        </Switch>
+      </Router>
     </div>
   );
 }

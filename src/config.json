@@ -1,10 +1,22 @@
 {
     "Header": {
         "Items": [
-            "Home",
-            "Teams",
-            "Favourite Team",
-            "Scores"
+            {
+                "name": "Home",
+                "path": "/"
+            },
+            {
+                "name": "Teams",
+                "path": "/teams"
+            },
+            {
+                "name": "Favourite Teams",
+                "path": "/fav-teams"
+            },
+            {
+                "name": "Scores",
+                "path": "/scores"
+            }
         ]
     }
 }
