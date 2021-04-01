@@ -15,4 +15,5 @@ export interface TeamModel {
     officialSiteUrl: string;
     shortName: string;
     teamName: string;
+    venue: any;
 }

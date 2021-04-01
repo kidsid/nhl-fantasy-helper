@@ -1,7 +1,6 @@
 import React from "react";
 
 const Header = (props: any) => {
-  console.log('@props', props);
   
   return (
     <header className="App-header">
