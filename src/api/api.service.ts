@@ -1,4 +1,4 @@
-import { FRANCHISE_URL, FRANCHISES_URL } from "./endpoints";
+import { FRANCHISE_URL, FRANCHISES_URL, DIVISIONS_URL } from "./endpoints";
 import * as config from "../config.json";
 
 const axios = require("axios");
@@ -12,3 +12,13 @@ export const fetchTeams = () => {
       console.log('@Error: ', err);
     })
 };
+
+export const fetchDivisions = () => {
+  return axios.get(`${config.api}${DIVISIONS_URL}`, { headers })
+    .then((res: any) => res.data.divisions)
+    .catch((err: any) => {
+      console.log('@Error: ', err);
+    })
+}
+
+

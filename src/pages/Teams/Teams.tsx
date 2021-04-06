@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { fetchTeams } from "../../api/api.service";
-import { TeamModel } from '../../models/Team';
+import { fetchDivisions } from "../../api/api.service";
+import { DivisionModel } from '../../models/index';
+import DivisionCard from '../../components/DivisionCard/DivisionCard';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Team from '../Team/Team';
 
 function Teams() {
-  const [teams, setTeams] = useState(new Array<TeamModel>())
+  const [divisions, setDivisions] = useState(new Array<DivisionModel>())
 
   useEffect(() => {
-    fetchTeams().then((res: Array<TeamModel>) => {
-      setTeams(res);
+    fetchDivisions().then((res: Array<DivisionModel>) => {
+      setDivisions(res);
     })
   }, [])
 
   return (
     <div>
       {
-        teams.map((team: TeamModel, index: number) => {
-          return <div key={index}>{team.name}</div>
+        divisions.map((division: DivisionModel, index: number) => {
+          return <DivisionCard division={division} key={index}></DivisionCard>
         })
       }
     </div>

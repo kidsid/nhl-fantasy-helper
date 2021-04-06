@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Scores from './pages/Scores/Scores';
 import Teams from './pages/Teams/Teams';
+import Team from './pages/Team/Team';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/Scores" component={Scores} />
           <Route path="/Teams" component={Teams} />
+          <Route path="/Teams/:id" component={Team} />
         </Switch>
       </Router>
     </div>
