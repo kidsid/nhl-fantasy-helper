@@ -10,20 +10,20 @@ import Team from '../Team/Team';
 function Teams() {
   const [divisions, setDivisions] = useState(new Array<DivisionModel>())
 
-  const fantasyService = new FantasyService(new ApiService());
-  const unsubscribe$: Subject<null> = new Subject();
-
-  const destroy = () => {
-    unsubscribe$.next();
-    unsubscribe$.complete();
-  }
-
   useEffect(() => {
+    const fantasyService = new FantasyService(new ApiService());
+    const unsubscribe$: Subject<null> = new Subject();
+
     fantasyService.getDivisions()
       .pipe(takeUntil(unsubscribe$))
       .subscribe((divisions: Array<DivisionModel>) => {
         setDivisions(divisions)
       })
+
+    return () => {
+      unsubscribe$.next();
+      unsubscribe$.complete();
+    }
 
   }, [])
 
