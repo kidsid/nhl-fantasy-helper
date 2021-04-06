@@ -1,24 +1,26 @@
-import { FRANCHISE_URL, FRANCHISES_URL, DIVISIONS_URL } from "./endpoints";
 import * as config from "../config.json";
-
+import { ApiHeaders } from './apiKey';
+import { Observable } from 'rxjs';
 const axios = require("axios");
 
-const headers = {};
+export class ApiService {
+  private httpOptions = {};
 
-export const fetchTeams = () => {
-  return axios.get(`${config.api}${FRANCHISES_URL}`, { headers })
-    .then((res: any) => res.data.teams)
-    .catch((err: any) => {
-      console.log('@Error: ', err);
-    })
-};
+  constructor() {
+    this.httpOptions = {
+      headers: ApiHeaders
+    }
+  }
 
-export const fetchDivisions = () => {
-  return axios.get(`${config.api}${DIVISIONS_URL}`, { headers })
-    .then((res: any) => res.data.divisions)
-    .catch((err: any) => {
-      console.log('@Error: ', err);
+
+  public apiCall(endPoint: string) {
+    return new Observable(observer => {
+      axios.get(`${config.api}${endPoint}`, this.httpOptions)
+        .then((response: any) => {
+          observer.next(response.data);
+          observer.complete();
+        })
+        .catch((error: any) => observer.error(error));
     })
+  }
 }
-
-

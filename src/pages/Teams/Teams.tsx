@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchDivisions } from "../../api/api.service";
+import { ApiService, FantasyService } from "../../api/index";
 import { DivisionModel } from '../../models/index';
 import DivisionCard from '../../components/DivisionCard/DivisionCard';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -8,9 +8,11 @@ import Team from '../Team/Team';
 function Teams() {
   const [divisions, setDivisions] = useState(new Array<DivisionModel>())
 
+  const fantasyService = new FantasyService(new ApiService());
+
   useEffect(() => {
-    fetchDivisions().then((res: Array<DivisionModel>) => {
-      setDivisions(res);
+    fantasyService.getDivisions().subscribe((divisions: Array<DivisionModel>) => {
+      setDivisions(divisions)
     })
   }, [])
 
