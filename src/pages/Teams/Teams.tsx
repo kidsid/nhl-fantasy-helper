@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ApiService, FantasyService } from "../../api/index";
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { DivisionModel } from '../../models/index';
 import DivisionCard from '../../components/DivisionCard/DivisionCard';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -9,11 +11,20 @@ function Teams() {
   const [divisions, setDivisions] = useState(new Array<DivisionModel>())
 
   const fantasyService = new FantasyService(new ApiService());
+  const unsubscribe$: Subject<null> = new Subject();
+
+  const destroy = () => {
+    unsubscribe$.next();
+    unsubscribe$.complete();
+  }
 
   useEffect(() => {
-    fantasyService.getDivisions().subscribe((divisions: Array<DivisionModel>) => {
-      setDivisions(divisions)
-    })
+    fantasyService.getDivisions()
+      .pipe(takeUntil(unsubscribe$))
+      .subscribe((divisions: Array<DivisionModel>) => {
+        setDivisions(divisions)
+      })
+
   }, [])
 
   return (
