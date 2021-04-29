@@ -7,7 +7,7 @@ export class FantasyService {
 
   getFranchises() {
     return this.apiService.apiCall(FRANCHISES_URL).pipe(
-      map((res: any) => res.data)
+      map((res: any) => res.teams)
     )
   }
 

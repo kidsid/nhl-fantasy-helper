@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ApiService, FantasyService } from "../../api/index";
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { DivisionModel } from '../../models/index';
+import { takeUntil, mergeMap } from 'rxjs/operators';
+import { Subject, forkJoin } from 'rxjs';
+import { DivisionModel, TeamModel } from '../../models/index';
 import DivisionCard from '../../components/DivisionCard/DivisionCard';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Team from '../Team/Team';
 
 function Teams() {
   const [divisions, setDivisions] = useState(new Array<DivisionModel>())
@@ -14,10 +12,32 @@ function Teams() {
     const fantasyService = new FantasyService(new ApiService());
     const unsubscribe$: Subject<null> = new Subject();
 
-    fantasyService.getDivisions()
-      .pipe(takeUntil(unsubscribe$))
-      .subscribe((divisions: Array<DivisionModel>) => {
-        setDivisions(divisions)
+    const getDivisions = fantasyService.getDivisions();
+    const getFranchises = fantasyService.getFranchises();
+
+    forkJoin([getDivisions, getFranchises])
+      .pipe(
+        takeUntil(unsubscribe$)
+      )
+      .subscribe((data: [Array<DivisionModel>, Array<TeamModel>]) => {
+        const divisions = data[0];
+        const teams = data[1];
+        console.log('@teams', teams);
+        
+
+        divisions.forEach((division: DivisionModel) => {
+          division.teams = new Array<TeamModel>();
+        })
+        
+        teams.forEach((team: TeamModel) => {
+          divisions.forEach((division: DivisionModel) => {
+            if(team.division.id === division.id) {
+              
+              division.teams?.push(team);
+            }
+          })
+        })
+        setDivisions(divisions);
       })
 
     return () => {

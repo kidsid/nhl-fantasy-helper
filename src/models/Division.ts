@@ -1,4 +1,5 @@
 import { ConferenceModel } from './Conference';
+import { TeamModel } from './Team';
 export interface DivisionModel {
     id: number;
     abbreviation: string;
@@ -6,4 +7,6 @@ export interface DivisionModel {
     active: boolean;
     link: string;
     name: string;
+
+    teams?: Array<TeamModel>;
 }

@@ -6,3 +6,4 @@ export const DIVISION_URL = '/divisions/{id}';
 export const CONFERENCES_URL = '/conferences';
 export const PLAYER_URL = '/people/{id}';
 export const PLAYER_STATS_URL = '/people/{id}/stats'; 
+export const STANDINGS_URL = '/standings?hydrate=record(overall),division,conference,team(nextSchedule(team),previousSchedule(team))&season=20202021&site=en_nhl'

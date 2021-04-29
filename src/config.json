@@ -1,5 +1,5 @@
 {
-    "api": "https://nhl-stats-and-live-data.p.rapidapi.com",
+    "api": "https://statsapi.web.nhl.com/api/v1",
     "Header": {
         "Items": [
             {

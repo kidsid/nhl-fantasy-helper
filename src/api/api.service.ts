@@ -6,13 +6,6 @@ const axios = require("axios");
 export class ApiService {
   private httpOptions = {};
 
-  constructor() {
-    this.httpOptions = {
-      headers: ApiHeaders
-    }
-  }
-
-
   public apiCall(endPoint: string) {
     return new Observable(observer => {
       axios.get(`${config.api}${endPoint}`, this.httpOptions)
