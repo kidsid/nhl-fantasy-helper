@@ -12,8 +12,8 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.0",
     "axios": "^0.21.1",
-    "jss": "^10.6.0",
-    "jss-preset-default": "^10.6.0",
+    "postcss-import": "^12.0.0",
+    "postcss-nested": "^4.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-jss": "^10.6.0",
@@ -26,10 +26,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn watch:css && react-scripts start",
+    "build": "yarn build:css && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": [
@@ -60,8 +62,8 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.13",
-    "tailwindcss": "^2.1.2"
+    "autoprefixer": "^9.0.0",
+    "postcss-cli": "^7.1.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
   }
 }

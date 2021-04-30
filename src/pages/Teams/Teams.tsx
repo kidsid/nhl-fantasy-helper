@@ -48,7 +48,7 @@ function Teams() {
   }, [])
 
   return (
-    <div>
+    <div className="flex justify-evenly">
       {
         divisions.map((division: DivisionModel, index: number) => {
           return <DivisionCard division={division} key={index}></DivisionCard>
