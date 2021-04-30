@@ -3,7 +3,7 @@ A React app that will give u all information(maybe not all) for players, u may w
 
 ## 🥅 Goals
 Learn React \
-Re-Learn styling using Sass \
+Re-Learn styling with Tilewindcss \
 Make my dream come true to create something related to Hockey, especially to NHL
 
 ## Start Project 
