@@ -10,7 +10,7 @@ function DivisionCard(props: any) {
       <div className="text-xl font-semibold">{props.division.name}</div>
       {
         props.division.teams.map((team: TeamModel, index: number) => {
-          return <TeamCard  teamName={team.name} abbr={team.abbreviation} key={index}/>
+          return <TeamCard  teamName={team.name} abbr={team.abbreviation} id={team.id} key={index}/>
         })
       }
     </div>
